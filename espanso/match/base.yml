@@ -1,0 +1,81 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
+
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+
+  # But matches can also be dynamic:
+
+  # Print the current date
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%d/%m/%Y"
+
+  - trigger: "jdt"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+
+  # Print the output of a shell command
+  - trigger: ":shell"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'Hello from your shell'"
+
+  # And much more! For more information, visit the docs: https://espanso.org/docs/
+
+  #############################
+  # Personal use expansions
+  #############################
+  - trigger: "she"
+    replace: "they"
+    propagate_case: true
+    word: true
+
+  - trigger: "her"
+    replace: "their"
+    propagate_case: true
+    word: true
+
+  - trigger: ":ch"
+    replace: "cheers,\nClive"
+
+  - trigger: ":th"
+    replace: "thanks,\nClive"
+
+  - trigger: ":wrongdomain"
+    replace: |
+              Hi - I think you have the wrong email address.  I own freeman.org.uk as my personal domain, run for myself and my family.  
+              Do not fret, it happens to some poor soul several times a week!  Here are my standard suggestions: 
+
+              1. If you want Freman College in Hertfordshire, you want something like admin@freman.org.uk (based on https://www.freman.org.uk/ ).  Use one "e" not two "ee"s.  
+
+              2. If you want Freeman College in Sheffield, you want something like enquiries@fmc.rmt.org (based on  https://www.rmt.org/freeman/get-in-touch/ ).  It looks like they are part of the Ruskin Mill Trust, and use the rmt.org email service.
+
+              3. It is also just that possible you mis-typed freeman.org.uk instead of freemans.org.uk - but I don't have a website for them.  I think they may be Freeman's Autologistics Ltd, on telephone 01933 356213, but you are on your own with this one :-)
+
+              cheers,
+              Clive
+
+
+ 

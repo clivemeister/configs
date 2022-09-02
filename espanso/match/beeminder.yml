@@ -1,0 +1,140 @@
+##############################################
+# Shortcuts for working on Beeminder admin
+##############################################
+
+matches:
+
+  #### Standard phrases for handling cancellation emails
+  - trigger: ":std"
+    replace: "{{output}}"
+    vars: 
+       - name: output
+         type: random
+         params:
+           choices:
+             - "I've cancelled the charge and taken the respite pause out of the graph" 
+             - "the charge is now cancelled, and I've taken the respite pause out of the graph"
+             - "I've cancelled the charge, and taken the derailment flat spot out of the graph"
+             - "I've stopped the charge, and taken the respite flat spot from the derailment out of the graph"
+
+  - trigger: ":nodata"
+    replace: "{{output}}"
+    vars: 
+       - name: output
+         type: random
+         params:
+           choices:
+             - "I've cancelled the charge for you. Can you go ahead and add the data, and let us know once you have? Then we can fix everything up. If you weren't sure how to do that, you can click on the date in the data entry form, and that should open a drop-down list, or on mobile you should just need to tap the buttons either side of the date.
+It'd actually be really handy if you could enter data before you contact us in future, so we can just fix up the graph right away; we need the data to be able to do a proper fix, so it really speeds things up if the data is already there." 
+             - "I've got the charge cancelled and the pledge dropped for you already. I've fixed the graph as much as possible, but I can't finish up the fix until you've added the data. Let us know once you've done that and we'll go ahead!"
+             - "I've cancelled the charge; let me know when you've entered the data and I can finish up fixing the graph. I got it as close as possible for now!
+We might have mentioned this before, but it's really helpful to us when people add the data before they contact us. Then we can just fix the graph right away, and it actually cuts in half the time we spend on reversing each derailment (and avoids the back and forth for you, too!). It'd be great if you can do that in future!"
+             - "No problem! I've cancelled the charge for you -- just let us know when you've entered the missing data and we can clean up the graph like nothing ever happened. It's as close as possible for now!
+
+By the way, it's really helpful to us when people add the data before they contact us, so we can just fix the graph right away. It actually cuts in half the time we spend on reversing each derailment, so we'd be super grateful if you can do that in future!"
+
+  - trigger: ":red"
+    replace: "{{output}}"
+    vars: 
+       - name: output
+         type: random
+         params:
+           choices:
+             - "Note that this puts you in the red for today!" 
+             - "I see that this means you are in the red for today - just as a heads up!"
+             - "This makes today an emergency day, so don't forget to record your data."
+             - "Just as a heads-up, this makes today an emergency (red) day for you."
+             - "Looks like this means you are in the red for today!"
+             - "This puts you in the red for day, just so you are aware!"
+  
+  #### Error responses
+  - trigger: ":applesync"
+    replace: |
+               There are a lot of restrictions around syncing from Apple Health, so it's likely that we just weren't allowed to sync soon enough to keep you on track. (We're not allowed to sync more than once an hour, if you haven't opened the Beeminder app recently, and if the device is locked.)
+
+               Unfortunately, the Apple Health data isn't on their server, but only on your device, so we have to rely on you turning on the Beeminder app, etc. There's not a lot we can do, because it's Apple that sets these restrictions as requirements to publish the app. It's really helpful to know when it's a problem, though, so we can think about how best we can address the problem!
+  
+  #### useful urls
+  - trigger: ":forum"
+    replace: "forum.beeminder.com"
+
+  - trigger: ":weight"
+    replace: "blog.beeminder.com/weight/"
+
+  - trigger: ":study"
+    replace: "blog.beeminder.com/study/"
+
+  - trigger: ":quickstart"
+    replace: "https://help.beeminder.com/category/5-quick-start-overview"
+
+  - trigger: ":pnp"
+    replace: "https://blog.beeminder.com/depunish/"
+    
+  #### New user responses
+  - trigger: ":newnone"
+    replace: |
+              Hello! This is one of the Beeminder workerbees checking in to say hi and welcome! 
+
+              We'd love to hear more about what you're planning to beemind exactly -- do you have any metrics in mind to track? 
+
+              It doesn't look like you've set up any goals yet; are you having any trouble? All kinds of feedback are so valuable to us, so don't hesitate to let us know and ask questions!
+
+              cheers,
+              Clive
+
+  #### New user responses
+  - trigger: ":newweight"
+    replace: |
+              Hi there!  Beeminder workerbee checking in to say hi and welcome!
+              
+              Weight loss goals are toughies - I'd be interested to know how you're planning on doing this!  Are you going to beemind your weight directly, or are you planning to beemind "inputs" like diet and exercise?  There's a classic blog post you might want to read, where Bee (our co-founder) gives their thoughts on the subject.
+
+              In any case, it's always really helpful to get feedback from new users, so do let us know how you get on, or ask any questions you might have!
+
+              cheers,
+              Clive
+
+  - trigger: ":newone"
+    replace: |
+              Hello!  This is one of the Beeminder support workerbees, just checking in to say hi and welcome :-)
+
+              I see you've got your first goal set up, so it'd be great to hear about how that process went for you and whether you have any lingering questions about Beeminder.  
+
+              It's really helpful for us to hear from users, especially people with a fresh set of eyes, because we're always trying to improve and hone things.  We'd be super grateful for any feedback!
+
+              cheers
+              Clive
+
+
+  - trigger: ":newtwo"
+    replace: |
+              Hello!  This is one of the Beeminder workerbees, just checking in to say hi and welcome :-)
+
+              I see you've got your first couple of goals set up, so it'd be great to hear about how that process went for you and whether you have any lingering questions about Beeminder.  
+
+              It's really helpful for us to hear from users, especially people with a fresh set of eyes, because we're always trying to improve and hone things.  We'd be super grateful for any feedback!
+
+              cheers
+              Clive
+
+  - trigger: ":first10"
+    replace: |
+              Hey! 
+
+              It looks like this'd be your first $10 derailment, so we just want to do an extra check-in and see how things are going.  We'd also love to know how you're finding Beeminder, and if you have any feedback you'd like to share: what is working well, what's confusing or difficult?
+
+              cheers,
+              Clive
+
+  #### Others
+  - trigger: ":delete"
+    replace: |
+              Sure thing! Since deletion is totally permanent and wipes all your data, we have a quick confirmation step first as a protection against email spoofing: can you just reply back one final time saying you confirm the request? We'd also really love to know what did or didn't work for you about Beeminder, if you're willing to share before you go!
+
+              You have no active goals or subscription, so you won't be charged while we wait for your confirmation, but you still need to reply in order to get your account deleted!
+
+
+  - trigger: ":versions"
+    replace: |
+              We don't go by "versions" per se; we make (on average) one user-visible improvement per day, and try to ensure we're making changes that make the site better continuously (though those aren't always on the coding side; documentation is important too!). At the moment one big project is an upgrade to Stripe Checkout, and we've also been improving some of our infrastructure to get us onto the latest version (or at least a recent version) of Rails... but we're also doing other smaller quality of life changes as we go. Check out changelog.beeminder.com for all the latest (it also gets tweeted on beemuvi).
+              In general, our roadmap is driven by user feedback and what we think will increase user-awesomeness (for example The Bright Red Staircase). So definitely keep letting us know when you run into problems, or if you have ideas about things that might be useful! If you have specific feedback then emailing it to us here is the best plan, so I can put it in my tracker; the forum (forum.beeminder.com) often provides opportunities to discuss things with us and others as well.

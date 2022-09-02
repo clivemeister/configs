@@ -1,0 +1,35 @@
+matches:
+# this works
+  - trigger: ":works"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: random
+        params:
+          choices:
+            - "long line of text that I want to split over two file lines"
+            - "another long line of text that I want to enter over two lines for readability"
+
+# this also works although it is a bit clunky
+  - trigger: ":alsoworks"
+    replace: "{{output}}"
+    vars:
+      - name: opt3
+        type: "echo"
+        params:
+          echo:
+            >
+             long line of text
+             that I want to split over two file lines
+      - name: opt4
+        type: echo
+        params:
+          echo:
+            >
+             another long line of text that I want to enter 
+             over two lines for readability
+      - name: output
+        type: random
+        params:
+          choices: ["{{opt3}}", "{{opt4}}" ]
+
