@@ -1,0 +1,110 @@
+;;;; this is the one true emacs ini file
+;; Any changes?  M-x eval-buffer  to re-run it all live
+
+; make text mode the default
+(setq default-major-mode 'text-mode)
+; automatically break lines at word boundaries if they are too wide
+(add-hook 'text-mode-hook 'text-mode-hook-identify)
+; Prevent extraneous tabs
+(setq-default indent-tabs-mode nil)
+
+;; Enable installation of packages from MELPA
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+
+;; Org mode stuff
+(setq org-log-done 'time)
+
+;; babel is the ability to execute source code within Org docs
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Org mode stuff
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq org-agenda-files (list "g:/My Drive/org/household.org"
+                             "g:/My Drive/org/personal.org"))
+; these three are recommended in the orgmode.org manual
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
+; My sequence of workflow states
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)"  "|" "DONE(d)")
+        (sequence "WAIT(w@/!)" "|" "CANCELLED(c@/!)")))
+; faces for the workflow states
+(setq org-todo-keyword-faces
+      (quote (("TODO" :foreground "red" :weight bold)
+              ("NEXT" :foreground "blue" :weight bold)
+              ("DONE" :foreground "forest green" :weight bold)
+              ("WAIT" :foreground "orange" :weight bold)
+              ("CANCELLED" :foreground "forest green" :weight bold))))
+
+; make TODO entries with children change to DONE when all children are DONE
+(defun org-summary-todo (n-done n-not-done)
+  "Switch entry to DONE when all subentries are done, to TODO otherwise"
+  (let (org-log-done org-log-states)   ; turn off logging
+    (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+(add-hook 'org-after-todo-statistics-hook #'org-summary-todo)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Origami - Does code folding, ie hide the body of an
+;; if/else/for/function so that you can fit more code on your screen
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package origami
+  :ensure t
+  :commands (origami-mode)
+  :bind (:map origami-mode-map
+              ("C-c o :" . origami-recursively-toggle-node)
+              ("C-c o a" . origami-toggle-all-nodes)
+              ("C-c o t" . origami-toggle-node)
+              ("C-c o o" . origami-show-only-node)
+              ("C-c o u" . origami-undo)
+              ("C-c o U" . origami-redo)
+              ("C-c o C-r" . origami-reset)
+              )
+  :config
+  (setq origami-show-fold-header t)
+  ;; The python parser currently doesn't fold if/for/etc. blocks, which is
+  ;; something we want. However, the basic indentation parser does support
+  ;; this with one caveat: you must toggle the node when your cursor is on
+  ;; the line of the if/for/etc. statement you want to collapse. You cannot
+  ;; fold the statement by toggling in the body of the if/for/etc.
+  (add-to-list 'origami-parser-alist '(python-mode . origami-indent-parser))
+  :init
+  (add-hook 'prog-mode-hook 'origami-mode)
+  )
+
+;; fold-this key bindings
+(global-set-key (kbd "C-c C-f") 'fold-this-all)
+(global-set-key (kbd "C-c C-F") 'fold-this)
+(global-set-key (kbd "C-c M-f") 'fold-this-unfold-all)
+
+;; a simple major mode for viewing Beeminder transaction logs, trlog-mode
+;; kick into action with M-x trlog-mode
+(setq trlog-highlights
+      '(("LUZ\\|ADD\\|DEL" . 'font-lock-function-name-face)
+        ("RFR\\|RFJ\\|BBR\\|BBD" . 'font-lock-constant-face)))
+(define-derived-mode trlog-mode fundamental-mode "trlog"
+  "major mode for viewing transaction logs."
+  (setq font-lock-defaults '(trlog-highlights)))
+
+;; pc-bufsw gives windows-style quick buffer switch with c-tab
+(require 'pc-bufsw)
+(pc-bufsw t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(use-package origami fold-this pc-bufsw)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
