@@ -1,0 +1,1 @@
+xcopy config/* C:\Users\clive\AppData\Roaming\espanso\match /i /d

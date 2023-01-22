@@ -47,15 +47,6 @@ matches:
   #############################
   # Personal use expansions
   #############################
-  - trigger: "she"
-    replace: "they"
-    propagate_case: true
-    word: true
-
-  - trigger: "her"
-    replace: "their"
-    propagate_case: true
-    word: true
 
   - trigger: ":ch"
     replace: "cheers,\nClive"
