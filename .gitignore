@@ -1,0 +1,115 @@
+# ignore the temporary files
+*.yml~
+*.yml#
+.
+.AllDRMRemoval/
+.anaconda/
+.ecore_tmp/
+.emacs.d/auto-save-list/.saves-21000-OCULUS-PC~
+.emacs.d/auto-save-list/.saves-308-OCULUS-PC~
+.emacs.d/auto-save-list/.saves-4132-OCULUS-PC~
+.emacs~
+.slime-history.eld
+AccurateRip/
+Acorah Software Products/
+Adobe/
+AdvertismentImages/
+AllDRMRemoval/
+Anki2/
+Atom/
+Brother/
+CMSClient/
+Code/
+Corsair/
+Cricut Design Space/
+Cyberduck/
+Docker Desktop/
+Docker/
+Dropbox/
+DropboxElectron/
+EAC/
+Encryptomatic, LLC/
+Everything/
+Fiddler Everywhere/
+FileZilla/
+FlashIntegro/
+FreeFileSync/
+GitHub Desktop/
+GitHubVisualStudio/
+GoPro/
+Google/
+HP/
+HPPSDr/
+HandBrake/
+HpUpdate/
+IObit/
+Intel/
+IsolatedStorage/
+JAM Software/
+Jedi/
+Leadertech/
+Logishrd/
+Logitech/
+Macromedia/
+Microsoft/
+Mozilla/
+NVIDIA Corporation/
+NVIDIA/
+NuGet/
+OpenOffice/
+OutlookPrivacyPlugin/
+PFU/
+PGP/
+Pleiades/
+PomoDoneApp/
+Postman/
+Processing/
+Python/
+QNAP/
+Racket/
+Rainmeter/
+RealVNC/
+Signal/
+SketchUp/
+Slack/
+Sony Corporation/
+Stardock/
+Stellarium/
+SudoCue/
+SystemInformer/
+Thunderbird/
+Todoist/
+Veeam_Software_Group_GmbH/
+VeraCrypt/
+Visual Studio Setup/
+WhatsApp/
+Zoom/
+audacity/
+autocad-electron-uwp/
+avidemux/
+calibre/
+chrysalis/
+com.adobe.dunamis/
+com.reolink.app.client
+discord/
+dvdcss/
+gcloud/
+gnupg/
+iTop Screen Recorder/
+ignoremore
+iterate_GmbH/
+jupyter/
+kleopatra/
+nomic.ai/
+npm-cache/
+obs-studio/
+obs-virtualcam.txt
+obsidian/
+pip/
+reolink/
+tpPLC/
+vlc/
+vstelemetry/
+winscp.rnd
+xca/
+yarle-evernote-to-md/
