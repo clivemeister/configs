@@ -157,6 +157,7 @@ matches:
                Unfortunately, the Apple Health data isn't on their server, but only on your device, so we have to rely on you turning on the Beeminder app, etc. There's not a lot we can do, because it's Apple that sets these restrictions as requirements to publish the app. It's really helpful to know when it's a problem, though, so we can think about how best we can address the problem!
   
   #### useful urls
+<<<<<<< HEAD
   - trigger: ":_forum"
     replace: "https://forum.beeminder.com/"
 
@@ -173,6 +174,21 @@ matches:
     replace: "https://help.beeminder.com/category/5-quick-start-overview"
 
   - trigger: ":_pnp"
+=======
+  - trigger: ":urlforum"
+    replace: "forum.beeminder.com"
+
+  - trigger: ":urlweight"
+    replace: "blog.beeminder.com/weight/"
+
+  - trigger: ":urlstudy"
+    replace: "blog.beeminder.com/study/"
+
+  - trigger: ":urlquick"
+    replace: "https://help.beeminder.com/category/5-quick-start-overview"
+
+  - trigger: ":urlpnp"
+>>>>>>> 5731e7a03c3061012f901d2e1866e56e7b9fbd12
     replace: "https://blog.beeminder.com/depunish/"
 
   - trigger: ":_integrations"
