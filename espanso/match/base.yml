@@ -14,7 +14,8 @@ matches:
 
   # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
 
-  # But matches can also be dynamic:
+  - trigger: ":test"
+    replace: "[I'm an inline-style link](https://www.google.com)"
 
   # Print the current date
   - trigger: ":date"
@@ -33,6 +34,15 @@ matches:
         params:
           format: "%Y-%m-%d"
 
+  - trigger: "7-dt"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+          offset: -604800
+
   # Print the output of a shell command
   - trigger: ":shell"
     replace: "{{output}}"
@@ -47,21 +57,18 @@ matches:
   #############################
   # Personal use expansions
   #############################
-  - trigger: "she"
-    replace: "they"
-    propagate_case: true
-    word: true
-
-  - trigger: "her"
-    replace: "their"
-    propagate_case: true
-    word: true
 
   - trigger: ":ch"
     replace: "cheers,\nClive"
 
   - trigger: ":th"
     replace: "thanks,\nClive"
+
+  - trigger: ":kr"
+    replace: "Kind regards,\nClive"
+
+  - trigger: ":bst"
+    replace: "best,\nClive"
 
   - trigger: ":wrongdomain"
     replace: |
