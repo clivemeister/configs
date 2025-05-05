@@ -1,0 +1,324 @@
+##############################################
+# Shortcuts for working on Beeminder admin
+##############################################
+
+matches:
+
+  #### Standard phrases for handling cancellation emails
+  - trigger: ";std"
+    replace: "{{output}}"
+    vars: 
+       - name: output
+         type: random
+         params:
+           choices:
+             - "I've cancelled the charge and taken the post-derail respite pause out of the graph" 
+             - "I've cancelled the pending charge, and I've also taken the post-derail respite pause out of the graph"
+             - "I've cancelled the charge, and taken the derailment flat spot out of the graph"
+             - "I've stopped the charge, and taken the flat spot from the non-legit derailment out of the graph"
+             - "I've cancelled the charge for you, and I've fixed up the graph to take out the unearned respite"
+             - "I've gone ahead and removed the pending charge from the goal; I've also corrected the graph to take out the un-earned respite pause."
+             - "I've cancelled the charge now. I've also smoothed out the goal line to take out the respite pause from the derail that's being removed."
+             - "I've taken care of that unintended charge and adjusted the graph's red goal line accordingly."
+             - "no need to worry about the charge, I've cancelled it. I've updated the graph goal line to take out the false respite pause, too."
+             - "I've cancelled the charge and fixed the graph for you. Please let me know if you spot anything that looks wrong!"
+             - "that charge has been removed, and the graph is now accurate (with the false respite pause removed). Let us know if there is anything else you spot!"
+             - "I've gone ahead and reversed the charge from your goal, and I've corrected the goal line in your graph to take out the respite pause."
+             - "the charge is now cancelled, and the graph is back to reflecting the proper goal line."
+             - "I've cancelled the charge that was pending, and adjusted the graph to take out the respite pause."
+             - "I've handled the cancellation of the charge and ensured the graph displays the correct value for the red goal line, with the post-derail respite pause removed."
+             - "the charge is cancelled, and I've smoothed the goal line on the graph by taking out the respite pause. Let us know if you have any other things that need sorting."
+             - "I've cancelled the charge and fixed the graph so you can see the right slopes in the red goal line now."
+
+  - trigger: ";done"
+    replace: "{{output}}"
+    vars: 
+       - name: output
+         type: random
+         params:
+           choices:
+             - "you're good to go now" 
+             - "it's all systems go again"
+             - "let's do this"
+             - "it's ready when you are"
+             - "all's ready again"
+             - "we are firing on all cylinders"
+             - "you can hit the ground running"
+             - "let's rock and roll!"
+             - "it's game on again"
+
+  - trigger: ";5-10"
+    replace: "{{output}}"
+    vars:
+       - name: output
+         type: random
+         params:
+           choices:
+             - "I've cancelled the charge, and the refund will take 5-10 days to get back to you"
+             - "I've requested a refund for the charge, which will take 5-10 days to get back to your card"
+             - "I've requested a refund for the pledge, which should be refunded in the next 5-10 days"
+             - "I've put through the refund for the pledge, and this should get back to you in 5-10 days"
+             - "I've cancelled the pledge payment, but it'll take 5-10 days for the refund to get processed back to your card"
+               
+  - trigger: ";honey"
+    markdown: "{{output}}"
+    vars:
+       - name: output
+         type: random
+         params:
+           choices:
+              - > 
+                ​For the refund, as you may know if we do a card refund, we get charged by the card companies, and it takes 5-10 days to get back to you.  
+                We could do that, or we could refund as [Honey Money](https://help.beeminder.com/article/354-honey-money), which will be instant for you, and charge-free for us.  
+                You can then use the H$ to cover subscriptions or (at your option) future derailments.   
+                Let us know which you prefer, and we can get that sorted."
+              - >
+                Since the charge went through and it'd cost us a fee to do a traditional refund (and those fees really add up!), 
+                would it be okay for us to do a refund in [Honey Money](https://help.beeminder.com/article/354-honey-money)? 
+                That's automatically applied against any premium payments, but you can also opt into using it for derailments too, via the payments page. What do you think?
+
+  - trigger: ";nodata"
+    replace: "{{output}}"
+    vars: 
+       - name: output
+         type: random
+         params:
+           choices:
+             - >
+               I've cancelled the charge for you. Can you go ahead and add the data, 
+               and let us know once you have? Then we can fix everything up. If you weren't 
+               sure how to do that, you can click on the date in the data entry form, and that 
+               should open a drop-down list, or on mobile you should just need to tap the buttons 
+               either side of the date.
+               
+               It'd actually be really handy if you could enter data before you contact us in 
+               future, so we can just fix up the graph right away; we need the data to be able 
+               to do a proper fix, so it really speeds things up if the data is already there. 
+             - > 
+               I've got the charge cancelled and the pledge dropped for you already. I've fixed 
+               the graph as much as possible, but I can't finish up the fix until you've added the 
+               data. Let us know once you've done that and we'll go ahead!
+             - >
+               I've cancelled the charge; let me know when you've entered the data and I can 
+               finish up fixing the graph. I got it as close as possible for now!
+               
+               We might have mentioned this before, but it's really helpful to us when people add 
+               the data before they contact us. Then we can just fix the graph right away, and 
+               it actually cuts in half the time we spend on reversing each derailment (and avoids 
+               the back and forth for you, too!). It'd be great if you can do that in future!
+             - >
+               No problem! I've cancelled the charge for you -- just let us know when you've entered 
+               the missing data and we can clean up the graph like nothing ever happened. It's 
+               as close as possible for now!
+               
+               By the way, it's really helpful to us when people add the data before they contact us,
+               so we can just fix the graph right away. It cuts in half the time we spend on 
+               reversing each derailment, so we'd be super grateful if you can do that in future!
+               
+  - trigger: ";noreason"
+    replace: "{{output}}"
+    vars:
+       - name: output
+         type: random
+         params:
+           choices:
+             - >
+               Eek! What happened? When you haven't entered data yet, we typically don't cancel the charge
+               until you've told us why you derailed (in as much or as little detail as you like -- it's
+               just as an extra part of the commitment contract!), but if you get back to us we can sort
+               that out right away. I've delayed the charge for 48 hours from now to give you time to
+               answer, but it's still going to go through if you don't reply!
+             - >
+               Hi! Sorry, it doesn't look like you've added any data, so can you explain why it's non-legit?
+               We don't cancel the charge until we know what went wrong, as part of the commitment contract.
+               I've delayed the charge by 48 hours to give you time to get back to us, but it will go through
+               after that if we don't hear back. Let us know!
+               
+
+  - trigger: ";red"
+    replace: "{{output}}"
+    vars: 
+       - name: output
+         type: random
+         params:
+           choices:
+             - "Note that this puts you in the red for today!" 
+             - "I see that this means you are in the red for today - just as a heads up!"
+             - "This makes today an emergency day, so don't forget to record your data."
+             - "Just as a heads-up, this makes today an emergency (red) day for you."
+             - "Looks like this means you are in the red for today!"
+             - "This puts you in the red for day, just so you are aware!"
+  
+  #### Error responses
+  - trigger: ";applesync"
+    replace: |
+               There are a lot of restrictions around syncing from Apple Health, so it's likely that we just weren't allowed to sync soon enough to keep you on track. (We're not allowed to sync more than once an hour, if you haven't opened the Beeminder app recently, and if the device is locked.)
+
+               Unfortunately, the Apple Health data isn't on their server, but only on your device, so we have to rely on you turning on the Beeminder app, etc. There's not a lot we can do, because it's Apple that sets these restrictions as requirements to publish the app. It's really helpful to know when it's a problem, though, so we can think about how best we can address the problem!
+  #### admin notes
+  - trigger: ";refadd"
+    replace: "user called not legit after adding missing datapoint"
+
+  #### useful urls
+  - trigger: ";_forum"
+    replace: "https://forum.beeminder.com/"
+
+  - trigger: ";_focus"
+    replace: "https://www.focusmate.com/signup/beeminder"
+
+  - trigger: ";_weight"
+    replace: "blog.beeminder.com/weight/"
+
+  - trigger: ";_study"
+    replace: "blog.beeminder.com/study/"
+
+  - trigger: ";_quick"
+    replace: "https://help.beeminder.com/category/5-quick-start-overview"
+
+  - trigger: ";_pnp"
+    replace: "https://blog.beeminder.com/depunish/"
+
+  - trigger: ";_integrations"
+    replace: "https://beeminder.consider.it/"
+
+  - trigger: ";_animation"
+    replace: "http://graph.beeminder.com/tutorial"
+
+  - trigger: ";_ratchet"
+    replace: "https://blog.beeminder.com/ratchet/"
+
+  - trigger: ";_stickers"
+    replace: "http://dreev.es/stickers"
+
+  - trigger: ";_payment"
+    replace: "http://beeminder.com/payments"
+
+  # note most words in faq have direct links, eg blog.bmndr.co/glossary#maxflux    See http://padm.us/jargon for source code
+  - trigger: ";_faq"
+    replace: "http://blog.bmndr.co/glossary"
+
+  - trigger: ";_break"
+    replace: "?start={{startdate}}&finish={{date.enddate}}"
+    vars:
+      - name: startdate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+      - name: date
+        type: form
+        params:
+          layout: "Enter end date: [[enddate]]"       
+
+  #### New user responses
+  - trigger: ";newnone"
+    markdown: |
+              Hello! This is one of the Beeminder workerbees checking in to say hi and welcome!
+              
+
+              We'd love to hear more about what you're planning to beemind exactly -- do you have any metrics in mind to track?
+              
+
+              It doesn't look like you've set up any goals yet; are you having any trouble? If you need some help, do check out
+              our [QuickStart guides](https://help.beeminder.com/category/5-quick-start-overview)!  And please know that all kinds of feedback are so valuable to us, so don't hesitate to let us know and ask questions...
+              Finally, don't forget, by signing up to Beeminder, you've opted in to being charged $5 at the end of a week
+              if you haven't got a goal set up.
+              
+              
+              Clive
+
+  
+  - trigger: ";newfocus"
+    markdown: |
+              Hi there!  This is one of the Beeminder workerbees checking in to say hi and welcome!
+              
+
+              Looks like you've successfully set up your first goal, using our [Focusmate integration](https://www.focusmate.com/signup/beeminder).  Great stuff!  One thing you may have spotted is that we start off your graph by using the total number of sessions you've done so far.  This is because that's what we get told by Focusmate - don't worry, any new sessions you do after starting the goal will be recorded simply as additions to this number.
+              
+
+              By the way, it's always really helpful to get feedback from new users, so do drop us a line and tell us how you got on.  Any things that might have confused you, or any questions, just ask - we really do appreciate it!
+
+              
+              Clive
+              
+  - trigger: ";newweight"
+    markdown: |
+               Hi there!  Beeminder workerbee checking in to say hi and welcome!
+              
+
+               Weight loss goals can be tough - I'd be interested to know how you're planning on doing this!  Are you going to beemind your weight directly, or are you planning to beemind "inputs" like diet and exercise?  There's a [classic blog post](https://blog.beeminder.com/weight/) you might want to read, where Bee (our co-founder) gives their thoughts on the subject.
+
+
+               In any case, it's always really helpful to get feedback from new users, so do let us know how you get on, or ask any questions you might have!
+
+             
+               Clive
+
+  - trigger: ";newquery"
+    replace: |
+              Hi there! Beeminder workerbee checking in to say hi and welcome!
+
+              We're a little worried that you didn't quite understand the signup process, though... during sign-up, we ask you to tell us what goal you're planning to track, and to indicate that you understand if you don't create a goal (any goal) by the end of a week, you'll be charged $5. Getting charged for failing your goals comes once you've got a goal set up; this first step is just about making sure you have a goal. Does that all make sense?
+
+              If that isn't what you thought you were signing up for, let us know! Actually, can you hit reply on this just to reassure us that you're on board with being charged $5 if you don't make a goal in the first 7 days.
+             
+  - trigger: ";newone"
+    markdown: |
+              Hello!  This is one of the Beeminder support workerbees, just checking in to say hi and welcome :-) 
+              
+
+              I see you've got your first goal set up! It'd be great to hear about how the setup process went for you and whether you have any lingering questions about Beeminder.  If you want more help, do check out our [QuickStart guides](https://help.beeminder.com/category/5-quick-start-overview), or ping us an email in Support, or ask questions on the [forums](https://forum.beeminder.com/), where lots of our users hang out.
+              
+
+              It's really helpful for us to hear from users, especially people with a fresh set of eyes, because we're always trying to improve and hone things.  We'd be super grateful for any feedback!
+
+
+              Clive
+
+
+  - trigger: ";newtwo"
+    replace: |
+              Hello!  This is one of the Beeminder workerbees, just checking in to say hi and welcome :-)
+
+              I see you've got your first couple of goals set up, so it'd be great to hear about how that process went for you and whether you have any lingering questions about Beeminder.  
+
+              It's really helpful for us to hear from users, especially people with a fresh set of eyes, because we're always trying to improve and hone things.  We'd be super grateful for any feedback!
+
+              Clive
+
+  - trigger: ";first10"
+    replace: |
+              Hey! 
+
+              It looks like this'd be your first $10 derailment, so we just like to take the opportunity to do an extra check-in and see how things are going.  We'd also love to know how you're finding Beeminder, and if you have any feedback you'd like to share: what is working well, what's confusing or difficult?
+
+              cheers,
+              Clive
+
+  #### Others
+  - trigger: ";delete"
+    replace: |
+              Sure thing! Since deletion is totally permanent and wipes all your data, we have a quick confirmation step first as a protection against email spoofing: can you just reply back one final time saying you confirm the request? We'd also really love to know what did or didn't work for you about Beeminder, if you're willing to share before you go!
+
+              You have no active goals or subscription, so you won't be charged while we wait for your confirmation, but you still need to reply in order to get your account deleted!
+
+
+  - trigger: ";versions"
+    replace: |
+              We don't go by "versions" per se; we make (on average) one user-visible improvement per day, and try to ensure we're making changes that make the site better continuously (though those aren't always on the coding side; documentation is important too!). At the moment one big project is an upgrade to Stripe Checkout, and we've also been improving some of our infrastructure to get us onto the latest version (or at least a recent version) of Rails... but we're also doing other smaller quality of life changes as we go. Check out changelog.beeminder.com for all the latest (it also gets tweeted on beemuvi).
+              In general, our roadmap is driven by user feedback and what we think will increase user-awesomeness (for example The Bright Red Staircase). So definitely keep letting us know when you run into problems, or if you have ideas about things that might be useful! If you have specific feedback then emailing it to us here is the best plan, so I can put it in my tracker; the forum (forum.beeminder.com) often provides opportunities to discuss things with us and others as well.
+
+  - trigger: ";refund"
+    markdown: "{{output}}"
+    vars: 
+       - name: output
+         type: random
+         params:
+           choices:
+             - >   
+               If you can reply with your non-legit call in the first *18 hours* or so after the derailment email comes through, we can generally catch the charge before it goes into the payment gateway.  This means no waiting for a refund for you, and we save a few cents on refund charges, too!  
+             - >
+               It's really unfortunate that you waited until after the charge went through to let us know about this -- in the first 24 hours, we can just cancel the charge, but now we'd have to pay a fee to do a refund. Would it be OK to refund you in [Honey Money](https://help.beeminder.com/article/354-honey-money), aka premium credit?  This can be applied against future subscription renewals, and also - at your option - against future derailments?
+               
+               In future, if you can reply in *18 hours or less*, we can probably just cancel the charge, no problem. (The charge can be cancelled for 24 hours, but our average reply time is 6 hours, so replying within 18 hours gives a margin of safety there.) Thanks!
+
+ 
